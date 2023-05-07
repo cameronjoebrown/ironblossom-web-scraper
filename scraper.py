@@ -1,13 +1,14 @@
 import requests
 from bs4 import BeautifulSoup
 
-iron_blossom_url = "https://www.ironblosam.net/for_sale_by_owner.php"
-website = requests.get(iron_blossom_url, timeout=5)
+class Scraper():
+    # website = requests.get(self.get_url(), timeout=5)
 
-website.raise_for_status()
+    # website.raise_for_status()
 
-website_content = BeautifulSoup(website.content, 'html.parser')
+    # website_content = BeautifulSoup(website.content, 'html.parser')
 
-week22 = website_content.select('table:-soup-contains("Week 22")')
+    # week22 = website_content.select('table:-soup-contains("Week 22")')
 
-print(week22)
+    def get_url():
+        return "https://www.ironblosam.net/for_sale_by_owner.php"
