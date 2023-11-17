@@ -18,7 +18,7 @@ class Scraper:
     
 def main():
     scraper = Scraper()
-    
+
     print("\nRunning\n")
 
     while True:
@@ -26,7 +26,7 @@ def main():
             website = scraper.send_request()
             current_content = scraper.get_week(22, website)
 
-            time.sleep(3)
+            time.sleep(3600)
 
             website = scraper.send_request()
             new_content = scraper.get_week(22, website)
