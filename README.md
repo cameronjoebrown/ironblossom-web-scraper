@@ -8,3 +8,5 @@ python scraper.py
 ```
 
 It's currently hard coded to week 22, so you'll have to update that in scraper.py if you want a different week
+
+The script will run until you end it with a standard KeyboardInterrupt (ctrl+c if running in standard terminal)
