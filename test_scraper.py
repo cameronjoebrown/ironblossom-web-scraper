@@ -6,7 +6,7 @@ class TestScraper(unittest.TestCase):
     def setUp(self):
         self.scraper = Scraper()
 
-    def test_get_url(self):
+    def test_should_get_url(self):
         url = 'https://www.ironblosam.net/for_sale_by_owner.php'
         result = self.scraper.get_url()
         self.assertEqual(result, url)
@@ -16,6 +16,6 @@ class TestScraper(unittest.TestCase):
         with patch("requests.get", return_value=mock_response):
             result = self.scraper.send_request()
             self.assertEqual(result, mock_response)
-        
+
 if __name__ == '__main__':
     unittest.main()
