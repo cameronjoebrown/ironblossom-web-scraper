@@ -1,6 +1,9 @@
 # Iron Blossom Web Scraper
 A web scraper I'm making of the Iron Blossom Lodge Timeshares for Sale website ([see it here](https://www.ironblosam.net/for_sale_by_owner.php)) that notifies when a new Timeshare unit is posted for sale.
 
+## How It Works
+It checks for changes of week 22 postings. At the moment, this includes when postings are changed or removed.
+
 ## How to Run
 You'll need to have Python 3 with the following modules installed: requests and Beautiful Soup (bs4). Once you have those, run this:
 ```Shell

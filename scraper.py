@@ -47,7 +47,7 @@ def main():
             website = scraper.send_request()
             current_content = scraper.get_week(week_num, website)
 
-            time.sleep(3)
+            time.sleep(3600)
 
             website = scraper.send_request()
             new_content = scraper.get_week(week_num, website)
