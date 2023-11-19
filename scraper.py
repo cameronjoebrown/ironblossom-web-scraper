@@ -1,6 +1,10 @@
 import requests
 import time
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 from bs4 import BeautifulSoup
+import os
 
 class Scraper:
 
@@ -16,6 +20,22 @@ class Scraper:
         website_content = BeautifulSoup(website.content, 'html.parser')
         return website_content.select(f'table:-soup-contains("Week {week_num}")')
     
+    def send_email(self, week_num):
+        msg = MIMEMultipart()
+        msg['Subject'] = f"Updates to Iron Blossom Time Shares Week {week_num}"
+        msg['From'] = os.environ['google_from_address']
+        msg['To'] = os.environ['to_email_address']
+
+        messageText = MIMEText(f'''Week {week_num} has had recent updates''','html')
+        msg.attach(messageText)
+
+        server = smtplib.SMTP('smtp.gmail.com:587') # smtp address and port
+        server.ehlo('Gmail') # call this to start the connection
+        server.starttls() # starts tls encryption. When we send our password it will be encrypted.
+        server.login(os.environ['google_from_address'], os.environ['google_app_password'])
+        server.sendmail(os.environ['google_from_address'], os.environ['to_email_address'], msg.as_string())
+        server.quit()
+    
 def main():
     scraper = Scraper()
 
@@ -23,18 +43,21 @@ def main():
 
     while True:
         try:
+            week_num = 22
             website = scraper.send_request()
-            current_content = scraper.get_week(22, website)
+            current_content = scraper.get_week(week_num, website)
 
-            time.sleep(3600)
+            time.sleep(3)
 
             website = scraper.send_request()
-            new_content = scraper.get_week(22, website)
+            new_content = scraper.get_week(week_num, website)
 
             if new_content == current_content:
                 continue
             else:
                 print("Something has changed")
+                scraper.send_email(week_num)
+
                 continue
         except KeyboardInterrupt:
             print("\n\nQuitting Program\n")
