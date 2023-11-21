@@ -7,17 +7,19 @@ It checks for changes of week 22 postings. At the moment, this includes when pos
 ## How to Run
 You'll need to have Python 3 with the following modules installed: requests and Beautiful Soup (bs4). Once you have those, run this:
 ```Shell
-python scraper.py
+python scraper.py -wn <week_num> -te <email_to_send_notifications_to> 
+```
+
+Example:
+```Shell
+python scraper.py -wn 22 -te example@gmail.com
 ```
 
 You'll also need the following environment variables set:
 ```Shell
 export google_app_password=<app_password> # you can create this from your google account that you will use to send the email. it's free
 export google_from_address=<email>
-export to_email_address=<email>
 ```
-
-It's currently hard coded to week 22, so you'll have to update that in scraper.py if you want a different week
 
 The script will run until you end it with a standard KeyboardInterrupt (ctrl+c if running in standard terminal)
 
