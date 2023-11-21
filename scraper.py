@@ -47,9 +47,6 @@ def main():
 
     args = parser.parse_args()
 
-    print(args.week_num)
-    print(args.to_email)
-
     week_num = args.week_num
     if week_num == None:
         week_num = 22
